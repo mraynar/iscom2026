@@ -292,6 +292,45 @@
             border-color: #e5e7eb;
         }
 
+        /* Modern Ghost Action Icons (Tanpa background kotak tebal, warna cerah & modern) */
+        .btn-action-icon {
+            background: transparent;
+            border: none;
+            padding: 6px 8px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.15s ease-in-out;
+            text-decoration: none;
+        }
+        .btn-action-icon:hover {
+            transform: scale(1.15);
+        }
+        .btn-action-icon.action-detail {
+            color: #0ea5e9 !important; /* Biru/Cyan langit cerah modern */
+        }
+        .btn-action-icon.action-detail:hover {
+            color: #0284c7 !important;
+            background-color: #f0f9ff;
+        }
+        .btn-action-icon.action-edit {
+            color: #f59e0b !important; /* Kuning Amber hangat & cerah modern */
+        }
+        .btn-action-icon.action-edit:hover {
+            color: #d97706 !important;
+            background-color: #fffbeb;
+        }
+        .btn-action-icon.action-delete {
+            color: #f43f5e !important; /* Merah Rose/Coral cerah modern */
+        }
+        .btn-action-icon.action-delete:hover {
+            color: #e11d48 !important;
+            background-color: #fff1f2;
+        }
+
         /* Presisi Tinggi Baris Konsisten: Menjaga tabel data < 5 persis sama tingginya dengan 5 data */
         .table tbody tr {
             height: 52px;

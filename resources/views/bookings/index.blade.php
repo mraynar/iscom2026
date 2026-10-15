@@ -222,16 +222,16 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <!-- 3 Tombol Aksi Icon-Only (Bootstrap Icons) -->
-                            <div class="d-inline-flex gap-1 align-items-center justify-content-center">
-                                <button type="button" class="btn btn-success btn-sm" commandfor="detailDialog-{{ $booking->id }}" command="show-modal" title="Detail Booking">
-                                    <i class="bi bi-eye"></i>
+                            <!-- 3 Tombol Aksi Icon Modern Ghost (Cerah & Tanpa Background Kotak) -->
+                            <div class="d-inline-flex gap-2 align-items-center justify-content-center">
+                                <button type="button" class="btn-action-icon action-detail" commandfor="detailDialog-{{ $booking->id }}" command="show-modal" title="Detail Booking">
+                                    <i class="bi bi-eye fs-5"></i>
                                 </button>
-                                <button type="button" class="btn btn-warning btn-sm text-dark" commandfor="editDialog-{{ $booking->id }}" command="show-modal" title="Edit Data">
-                                    <i class="bi bi-pencil"></i>
+                                <button type="button" class="btn-action-icon action-edit" commandfor="editDialog-{{ $booking->id }}" command="show-modal" title="Edit Data">
+                                    <i class="bi bi-pencil fs-5"></i>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-sm" commandfor="deleteDialog-{{ $booking->id }}" command="show-modal" title="Hapus Data">
-                                    <i class="bi bi-trash"></i>
+                                <button type="button" class="btn-action-icon action-delete" commandfor="deleteDialog-{{ $booking->id }}" command="show-modal" title="Hapus Data">
+                                    <i class="bi bi-trash fs-5"></i>
                                 </button>
                             </div>
 
@@ -392,10 +392,10 @@
                                 <span class="badge px-3 py-2">&nbsp;</span>
                             </td>
                             <td class="text-center">
-                                <div class="d-inline-flex gap-1 align-items-center justify-content-center">
-                                    <button type="button" class="btn btn-sm">&nbsp;</button>
-                                    <button type="button" class="btn btn-sm">&nbsp;</button>
-                                    <button type="button" class="btn btn-sm">&nbsp;</button>
+                                <div class="d-inline-flex gap-2 align-items-center justify-content-center">
+                                    <span class="btn-action-icon">&nbsp;</span>
+                                    <span class="btn-action-icon">&nbsp;</span>
+                                    <span class="btn-action-icon">&nbsp;</span>
                                 </div>
                             </td>
                         </tr>
