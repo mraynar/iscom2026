@@ -192,6 +192,13 @@
             color: #9ca3af;
             border-color: #e5e7eb;
         }
+
+        /* Invisible spacer rows to keep under-5 data tables perfectly matched to 5-data height */
+        .placeholder-row, .placeholder-row td {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 <body class="bg-light">

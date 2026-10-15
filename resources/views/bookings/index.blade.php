@@ -103,8 +103,8 @@
         </div>
     </div>
 
-    <!-- 3. Pembungkus Kartu Tabel Utama (Ukuran Konsisten & Tetap Sama pada Data < 5 Maupun 5 Data) -->
-    <div class="card border-0 shadow-sm rounded-4 p-4 w-100 d-flex flex-column" style="min-height: 580px;">
+    <!-- 3. Pembungkus Kartu Tabel Utama (Ukuran Alami Presisi & Sejajar) -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 w-100">
         <!-- Header Tabel & Tombol Tambah Data -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="d-flex align-items-center gap-2">
@@ -121,8 +121,8 @@
         <!-- Alert Notifikasi Tepat di Atas Tabel -->
         @include('layouts.partials.alerts')
 
-        <!-- Tabel Data Booking (Bootstrap 5.3: Striped, Hover, Borderless) dengan Min-Height Konsisten -->
-        <div class="table-responsive flex-grow-1" style="min-height: 380px;">
+        <!-- Tabel Data Booking (Bootstrap 5.3: Striped, Hover, Borderless) -->
+        <div class="table-responsive">
             <table class="table table-hover table-striped table-borderless align-middle mb-0">
                 <thead>
                     <tr class="border-bottom">
@@ -247,12 +247,30 @@
                         </td>
                     </tr>
                     @endforelse
+
+                    {{-- Penyeimbang Tinggi Baris: Menjaga ukuran tabel data di bawah 5 tetap presisi seukuran tabel 5 data tanpa menambah ruang kosong berlebih --}}
+                    @if($bookings->count() > 0 && $bookings->count() < 5)
+                        @for($i = $bookings->count(); $i < 5; $i++)
+                        <tr class="placeholder-row" style="visibility: hidden; pointer-events: none; user-select: none;">
+                            <td class="py-3">&nbsp;</td>
+                            <td class="text-secondary py-3">&nbsp;</td>
+                            <td class="text-secondary py-3">&nbsp;</td>
+                            <td class="text-secondary py-3">&nbsp;</td>
+                            <td>
+                                <span class="badge px-3 py-2">&nbsp;</span>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-sm me-1">&nbsp;</button>
+                            </td>
+                        </tr>
+                        @endfor
+                    @endif
                 </tbody>
             </table>
         </div>
 
-        <!-- Komponen Pagination Bootstrap 5 Terintegrasi dengan Laravel Eloquent (Selalu Terkunci Rapi di Bawah) -->
-        <div class="mt-auto pt-3 border-top">
+        <!-- Komponen Pagination Bootstrap 5 Terintegrasi dengan Laravel Eloquent -->
+        <div class="mt-3 pt-3 border-top">
             {{ $bookings->links() }}
         </div>
     </div>
