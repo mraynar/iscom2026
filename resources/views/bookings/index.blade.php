@@ -48,9 +48,14 @@
         <!-- 1. Total Booking -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-kpi border-0 shadow-sm h-100">
-                <div class="overflow-hidden">
-                    <h4 class="kpi-value">{{ $totalBooking }}</h4>
-                    <p class="kpi-label mb-0">Total Booking</p>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="kpi-icon-box" style="background-color: #eef2ff; color: #4f46e5;">
+                        <i class="bi bi-calendar3 fs-4"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <h4 class="kpi-value">{{ $totalBooking }}</h4>
+                        <p class="kpi-label mb-0">Total Booking</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,9 +63,14 @@
         <!-- 2. Total Pelanggan -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-kpi border-0 shadow-sm h-100">
-                <div class="overflow-hidden">
-                    <h4 class="kpi-value">{{ $totalPelanggan }}</h4>
-                    <p class="kpi-label mb-0">Total Pelanggan</p>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="kpi-icon-box" style="background-color: #fee2e2; color: #ef4444;">
+                        <i class="bi bi-people fs-4"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <h4 class="kpi-value">{{ $totalPelanggan }}</h4>
+                        <p class="kpi-label mb-0">Total Pelanggan</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,9 +78,14 @@
         <!-- 3. Booking Hari Ini -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-kpi border-0 shadow-sm h-100">
-                <div class="overflow-hidden">
-                    <h4 class="kpi-value">{{ $bookingHariIni }}</h4>
-                    <p class="kpi-label mb-0">Booking Hari Ini</p>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="kpi-icon-box" style="background-color: #dcfce7; color: #16a34a;">
+                        <i class="bi bi-calendar-check fs-4"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <h4 class="kpi-value">{{ $bookingHariIni }}</h4>
+                        <p class="kpi-label mb-0">Booking Hari Ini</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,9 +93,14 @@
         <!-- 4. Total Pendapatan (Wajib 1 Line) -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-kpi border-0 shadow-sm h-100">
-                <div class="overflow-hidden">
-                    <h4 class="kpi-value-currency text-nowrap mb-0">{{ $totalPendapatan }}</h4>
-                    <p class="kpi-label mb-0">Total Pendapatan</p>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="kpi-icon-box" style="background-color: #fef3c7; color: #d97706;">
+                        <i class="bi bi-wallet2 fs-4"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <h4 class="kpi-value-currency text-nowrap mb-0">{{ $totalPendapatan }}</h4>
+                        <p class="kpi-label mb-0">Total Pendapatan</p>
+                    </div>
                 </div>
             </div>
         </div>
