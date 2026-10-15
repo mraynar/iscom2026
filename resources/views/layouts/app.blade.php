@@ -71,31 +71,66 @@
         /* Kotak Card Tabel & Form */
         .card {
             background: white;
-            padding: 24px;
-            border-radius: 10px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
             border: none;
-            width: 100%;
-            max-width: 1000px;
-            margin: auto;
             box-sizing: border-box;
         }
 
         .card:has(.form-group) {
-            max-width: 500px;
+            max-width: 600px;
+            margin: auto;
+            padding: 24px;
         }
 
-        /* Penyesuaian KPI Card pada Grid Kolom agar Presisi & Proporsional */
-        [class*="col-"] > .card,
+        /* Modern SaaS KPI Cards */
         .card-kpi {
+            padding: 18px 20px !important;
+            border-radius: 16px !important;
+            border: 1px solid #f1f5f9 !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03) !important;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100% !important;
             max-width: 100% !important;
             margin: 0 !important;
-            padding: 18px 20px !important;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: white;
         }
         .card-kpi:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06) !important;
+        }
+        .kpi-icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .kpi-value {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1px;
+            line-height: 1.2;
+            white-space: nowrap !important;
+        }
+        .kpi-value-currency {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1px;
+            line-height: 1.2;
+            white-space: nowrap !important;
+            letter-spacing: -0.3px;
+        }
+        .kpi-label {
+            font-size: 0.8125rem;
+            color: #64748b;
+            font-weight: 500;
+            margin: 0;
+            white-space: nowrap !important;
         }
 
         /* Style Tabel Legacy (hanya berlaku jika tidak memakai class .table Bootstrap) */
