@@ -105,7 +105,7 @@
 
     <!-- 3. Pembungkus Kartu Tabel Utama (Ukuran Alami Presisi & Sejajar) -->
     <div class="card border-0 shadow-sm rounded-4 p-4 w-100">
-        <!-- Header Tabel & Tombol Tambah Data -->
+        <!-- Header Tabel & Tombol Tambah Data (Memicu Modal Tambah) -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="d-flex align-items-center gap-2">
                 <h4 class="fw-bold mb-0 text-dark">Daftar Booking</h4>
@@ -115,8 +115,63 @@
                     </a>
                 @endif
             </div>
-            <a href="{{ route('bookings.create') }}" class="btn btn-primary px-3 py-2">+ Tambah Booking</a>
+            
+            <!-- Tombol Tambah Booking Memicu Modal Dialog -->
+            <button type="button" class="btn btn-primary px-3 py-2" commandfor="createBookingDialog" command="show-modal">
+                + Tambah Booking
+            </button>
         </div>
+
+        <!-- MODAL 1: Form Tambah Booking Baru (<dialog> Berukuran Seragam) -->
+        <dialog class="dialog border-0" id="createBookingDialog">
+            <form action="{{ route('bookings.store') }}" method="POST" class="dialog-container m-0">
+                @csrf
+                <!-- Header Dialog -->
+                <div class="dialog-header d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0 text-dark">Formulir Booking Baru</h5>
+                    <button type="button" class="btn-close" commandfor="createBookingDialog" command="close" aria-label="Close"></button>
+                </div>
+
+                <!-- Body Dialog -->
+                <div class="dialog-body text-start">
+                    <div class="mb-3">
+                        <label for="create_nama" class="form-label fw-semibold small text-dark">Nama Pemesan</label>
+                        <input type="text" class="form-control" id="create_nama" name="nama" value="{{ old('nama') }}" placeholder="Masukkan nama pemesan" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="create_no_hp" class="form-label fw-semibold small text-dark">No HP / WhatsApp</label>
+                        <input type="text" class="form-control" id="create_no_hp" name="no_hp" value="{{ old('no_hp') }}" placeholder="Contoh: 08123456789" required>
+                    </div>
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label for="create_tanggal" class="form-label fw-semibold small text-dark">Tanggal</label>
+                            <input type="date" class="form-control" id="create_tanggal" name="tanggal" value="{{ old('tanggal', now()->toDateString()) }}" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="create_jam" class="form-label fw-semibold small text-dark">Jam</label>
+                            <input type="time" class="form-control" id="create_jam" name="jam" value="{{ old('jam') }}" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="create_catatan" class="form-label fw-semibold small text-dark">Catatan (Opsional)</label>
+                        <textarea class="form-control" id="create_catatan" name="catatan" rows="3" placeholder="Tambahkan catatan khusus jika ada">{{ old('catatan') }}</textarea>
+                    </div>
+                </div>
+
+                <!-- Footer Dialog -->
+                <div class="dialog-footer d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-light px-4" commandfor="createBookingDialog" command="close">
+                        Batal
+                    </button>
+                    <button type="submit" class="btn btn-primary px-4">
+                        Simpan Booking
+                    </button>
+                </div>
+            </form>
+        </dialog>
 
         <!-- Alert Notifikasi Tepat di Atas Tabel -->
         @include('layouts.partials.alerts')
@@ -153,34 +208,34 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <!-- Tombol Pemicu Modal Dialog Detail -->
+                            <!-- Tombol Detail (Memicu Modal Detail) -->
                             <button type="button" class="btn btn-success btn-sm me-1" commandfor="detailDialog-{{ $booking->id }}" command="show-modal">
                                 Detail
                             </button>
 
-                            <!-- Modal Detail Informasi Booking (<dialog>) -->
-                            <dialog class="dialog border-0 shadow-lg rounded-4 p-4 text-start" id="detailDialog-{{ $booking->id }}">
-                                <div class="dialog-header d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-                                    <h5 class="fw-bold mb-0 text-dark">Detail Informasi Booking</h5>
-                                    <button type="button" class="btn-close" commandfor="detailDialog-{{ $booking->id }}" command="close" aria-label="Close"></button>
-                                </div>
-                                <div class="dialog-body pb-3">
-                                    <div class="bg-light p-3 rounded-3 mb-2">
-                                        <div class="row g-2 text-start">
-                                            <div class="col-4 text-muted small">Nama Pemesan</div>
-                                            <div class="col-8 fw-semibold text-dark">{{ $booking->nama }}</div>
+                            <!-- MODAL 2: Detail Informasi Booking (<dialog> Berukuran Seragam) -->
+                            <dialog class="dialog border-0" id="detailDialog-{{ $booking->id }}">
+                                <div class="dialog-container text-start">
+                                    <div class="dialog-header d-flex justify-content-between align-items-center">
+                                        <h5 class="fw-bold mb-0 text-dark">Detail Informasi Booking</h5>
+                                        <button type="button" class="btn-close" commandfor="detailDialog-{{ $booking->id }}" command="close" aria-label="Close"></button>
+                                    </div>
+                                    <div class="dialog-body py-2">
+                                        <div class="row g-3 text-start align-items-center">
+                                            <div class="col-5 text-secondary">Nama Pemesan</div>
+                                            <div class="col-7 fw-bold text-dark">{{ $booking->nama }}</div>
 
-                                            <div class="col-4 text-muted small">No HP / WhatsApp</div>
-                                            <div class="col-8 fw-medium text-dark">{{ $booking->no_hp }}</div>
+                                            <div class="col-5 text-secondary">No HP / WhatsApp</div>
+                                            <div class="col-7 fw-medium text-dark">{{ $booking->no_hp }}</div>
 
-                                            <div class="col-4 text-muted small">Tanggal</div>
-                                            <div class="col-8 fw-medium text-dark">{{ $booking->tanggal }}</div>
+                                            <div class="col-5 text-secondary">Tanggal</div>
+                                            <div class="col-7 fw-medium text-dark">{{ $booking->tanggal }}</div>
 
-                                            <div class="col-4 text-muted small">Jam</div>
-                                            <div class="col-8 fw-medium text-dark">{{ $booking->jam }}</div>
+                                            <div class="col-5 text-secondary">Jam</div>
+                                            <div class="col-7 fw-medium text-dark">{{ $booking->jam }}</div>
 
-                                            <div class="col-4 text-muted small">Status</div>
-                                            <div class="col-8">
+                                            <div class="col-5 text-secondary">Status</div>
+                                            <div class="col-7">
                                                 @if($booking->status == 'menunggu')
                                                     <span class="badge text-bg-warning px-3 py-1">Menunggu</span>
                                                 @elseif($booking->status == 'selesai')
@@ -192,49 +247,110 @@
                                                 @endif
                                             </div>
 
-                                            <div class="col-4 text-muted small">Catatan</div>
-                                            <div class="col-8 text-dark">{{ $booking->catatan ?? '-' }}</div>
+                                            <div class="col-5 text-secondary">Catatan</div>
+                                            <div class="col-7 text-dark">{{ $booking->catatan ?? '-' }}</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="dialog-footer d-flex justify-content-end pt-2">
-                                    <button type="button" class="btn btn-secondary px-4" commandfor="detailDialog-{{ $booking->id }}" command="close">
-                                        Tutup
-                                    </button>
+                                    <div class="dialog-footer d-flex justify-content-end">
+                                        <button type="button" class="btn btn-secondary px-4" commandfor="detailDialog-{{ $booking->id }}" command="close">
+                                            Tutup
+                                        </button>
+                                    </div>
                                 </div>
                             </dialog>
 
-                            <!-- Tombol Edit -->
-                            <a href="{{ route('bookings.edit', $booking->id) }}" class="btn btn-warning btn-sm text-dark me-1">Edit</a>
+                            <!-- Tombol Edit (Memicu Modal Edit) -->
+                            <button type="button" class="btn btn-warning btn-sm text-dark me-1" commandfor="editDialog-{{ $booking->id }}" command="show-modal">
+                                Edit
+                            </button>
+
+                            <!-- MODAL 3: Edit Data Booking (<dialog> Berukuran Seragam) -->
+                            <dialog class="dialog border-0" id="editDialog-{{ $booking->id }}">
+                                <form action="{{ route('bookings.update', $booking->id) }}" method="POST" class="dialog-container m-0">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="dialog-header d-flex justify-content-between align-items-center">
+                                        <h5 class="fw-bold mb-0 text-dark">Edit Data Booking</h5>
+                                        <button type="button" class="btn-close" commandfor="editDialog-{{ $booking->id }}" command="close" aria-label="Close"></button>
+                                    </div>
+                                    <div class="dialog-body text-start">
+                                        <div class="mb-3">
+                                            <label for="edit_nama_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Nama Pemesan</label>
+                                            <input type="text" class="form-control" id="edit_nama_{{ $booking->id }}" name="nama" value="{{ old('nama', $booking->nama) }}" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="edit_no_hp_{{ $booking->id }}" class="form-label fw-semibold small text-dark">No HP / WhatsApp</label>
+                                            <input type="text" class="form-control" id="edit_no_hp_{{ $booking->id }}" name="no_hp" value="{{ old('no_hp', $booking->no_hp) }}" required>
+                                        </div>
+
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-6">
+                                                <label for="edit_tanggal_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Tanggal</label>
+                                                <input type="date" class="form-control" id="edit_tanggal_{{ $booking->id }}" name="tanggal" value="{{ old('tanggal', $booking->tanggal) }}" required>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="edit_jam_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Jam</label>
+                                                <input type="time" class="form-control" id="edit_jam_{{ $booking->id }}" name="jam" value="{{ old('jam', substr($booking->jam, 0, 5)) }}" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="edit_status_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Status Booking</label>
+                                            <select class="form-select" id="edit_status_{{ $booking->id }}" name="status">
+                                                <option value="menunggu" {{ old('status', $booking->status) == 'menunggu' ? 'selected' : '' }}>Menunggu</option>
+                                                <option value="selesai" {{ old('status', $booking->status) == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                                                <option value="batal" {{ old('status', $booking->status) == 'batal' ? 'selected' : '' }}>Batal</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label for="edit_catatan_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Catatan (Opsional)</label>
+                                            <textarea class="form-control" id="edit_catatan_{{ $booking->id }}" name="catatan" rows="2">{{ old('catatan', $booking->catatan) }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="dialog-footer d-flex justify-content-end gap-2">
+                                        <button type="button" class="btn btn-light px-4" commandfor="editDialog-{{ $booking->id }}" command="close">
+                                            Batal
+                                        </button>
+                                        <button type="submit" class="btn btn-primary px-4">
+                                            Update Booking
+                                        </button>
+                                    </div>
+                                </form>
+                            </dialog>
                             
-                            <!-- Tombol Pemicu Modal Dialog Hapus -->
+                            <!-- Tombol Hapus (Memicu Modal Konfirmasi Hapus) -->
                             <button type="button" class="btn btn-danger btn-sm" commandfor="deleteDialog-{{ $booking->id }}" command="show-modal">
                                 Hapus
                             </button>
 
-                            <!-- Modal Konfirmasi Hapus Modern (<dialog>) -->
-                            <dialog class="dialog border-0 shadow-lg rounded-4 p-4 text-center" id="deleteDialog-{{ $booking->id }}">
-                                <div class="dialog-header d-flex justify-content-end mb-1">
-                                    <button type="button" class="btn-close" commandfor="deleteDialog-{{ $booking->id }}" command="close" aria-label="Close"></button>
-                                </div>
-                                <div class="dialog-body pb-3">
-                                    <i class="bi bi-exclamation-circle text-warning display-5 mb-3 d-block"></i>
-                                    <h5 class="fw-bold mb-2">Konfirmasi Hapus Data</h5>
-                                    <p class="text-muted mb-0">
-                                        Apakah Anda yakin ingin menghapus data pemesan <strong>"{{ $booking->nama }}"</strong>? Tindakan ini tidak dapat dibatalkan.
-                                    </p>
-                                </div>
-                                <div class="dialog-footer d-flex justify-content-center gap-2 pt-2">
-                                    <button type="button" class="btn btn-light px-4" commandfor="deleteDialog-{{ $booking->id }}" command="close">
-                                        Batal
-                                    </button>
-                                    <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" class="d-inline m-0">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger px-4">
-                                            Ya, Hapus
+                            <!-- MODAL 4: Konfirmasi Hapus Data (<dialog> Berukuran Seragam) -->
+                            <dialog class="dialog border-0" id="deleteDialog-{{ $booking->id }}">
+                                <div class="dialog-container text-center">
+                                    <div class="dialog-header d-flex justify-content-between align-items-center">
+                                        <h5 class="fw-bold mb-0 text-dark">Konfirmasi Hapus Data</h5>
+                                        <button type="button" class="btn-close" commandfor="deleteDialog-{{ $booking->id }}" command="close" aria-label="Close"></button>
+                                    </div>
+                                    <div class="dialog-body d-flex flex-column justify-content-center align-items-center py-4">
+                                        <i class="bi bi-exclamation-circle text-warning display-3 mb-3 d-block"></i>
+                                        <h5 class="fw-bold mb-2">Hapus Data Pemesan?</h5>
+                                        <p class="text-muted mb-0 px-3">
+                                            Apakah Anda yakin ingin menghapus data booking pemesan <strong>"{{ $booking->nama }}"</strong>? Tindakan ini tidak dapat dibatalkan.
+                                        </p>
+                                    </div>
+                                    <div class="dialog-footer d-flex justify-content-center gap-2">
+                                        <button type="button" class="btn btn-light px-4" commandfor="deleteDialog-{{ $booking->id }}" command="close">
+                                            Batal
                                         </button>
-                                    </form>
+                                        <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" class="d-inline m-0">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger px-4">
+                                                Ya, Hapus
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </dialog>
                         </td>

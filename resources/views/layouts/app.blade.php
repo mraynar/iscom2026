@@ -151,18 +151,59 @@
         .card form:has(input[value="PUT"]) > button[type="submit"]:not(.btn) { background: #ffc107; color: black; padding: 9px 16px; font-weight: bold; }
         .btn-kembali { color: #666; text-decoration: none; margin-left: 10px; }
 
-        /* Modern Native HTML Dialog & Backdrop */
+        /* Modern Native HTML Dialog - Ukuran Lebar & Tinggi Seragam (520px x 580px) */
         dialog {
-            max-width: 480px;
-            width: 90%;
+            width: 95%;
+            max-width: 520px;
+            height: 580px;
+            max-height: 90vh;
             margin: auto;
             border: none;
             background: white;
+            border-radius: 20px;
+            padding: 0;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
         }
         dialog::backdrop {
-            background-color: rgba(15, 23, 42, 0.45);
+            background-color: rgba(15, 23, 42, 0.5);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
+        }
+        .dialog-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .dialog-header {
+            flex-shrink: 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+            margin-bottom: 16px;
+        }
+        .dialog-header .btn-close {
+            padding: 6px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+        .dialog-header .btn-close:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+        }
+        .dialog-body {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .dialog-footer {
+            flex-shrink: 0;
+            padding-top: 16px;
+            border-top: 1px solid #f1f5f9;
+            margin-top: auto;
         }
 
         /* Modern Pagination SaaS Styling */
