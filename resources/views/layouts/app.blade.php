@@ -164,8 +164,8 @@
         .btn-edit { background: #ffc107 !important; color: black !important; }
         .btn-hapus { background: #dc3545 !important; color: white !important; border: none !important; cursor: pointer; padding: 6px 12px !important; border-radius: 4px !important; }
         .alert:not([class*="alert-"]) { background: #d4edda !important; color: #155724 !important; padding: 10px !important; margin-bottom: 15px !important; border-radius: 4px !important; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        label:not(.form-floating > label) { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-floating > label { font-weight: 400; margin-bottom: 0; color: #64748b; }
         .card form input:not(.form-control):not([type="checkbox"]):not([type="radio"]),
         .card form select:not(.form-select):not(.form-control),
         .card form textarea:not(.form-control) { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }

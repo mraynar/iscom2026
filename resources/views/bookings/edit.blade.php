@@ -24,38 +24,43 @@
         @csrf
         @method('PUT') <!-- Mengubah request POST menjadi PUT untuk Update -->
 
-        <div class="mb-3">
-            <label for="nama" class="form-label fw-semibold">Nama Pemesan</label>
-            <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama', $booking->nama) }}" required>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama', $booking->nama) }}" placeholder="Nama Pemesan" required>
+            <label for="nama">Nama Pemesan</label>
         </div>
 
-        <div class="mb-3">
-            <label for="no_hp" class="form-label fw-semibold">No HP / WhatsApp</label>
-            <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ old('no_hp', $booking->no_hp) }}" required>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ old('no_hp', $booking->no_hp) }}" placeholder="No HP / WhatsApp" required>
+            <label for="no_hp">No HP / WhatsApp</label>
         </div>
 
-        <div class="mb-3">
-            <label for="tanggal" class="form-label fw-semibold">Tanggal</label>
-            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ old('tanggal', $booking->tanggal) }}" required>
+        <div class="row g-2 mb-3">
+            <div class="col-6">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ old('tanggal', $booking->tanggal) }}" placeholder="Tanggal" required>
+                    <label for="tanggal">Tanggal</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-floating">
+                    <input type="time" class="form-control" id="jam" name="jam" value="{{ old('jam', substr($booking->jam, 0, 5)) }}" placeholder="Jam" required>
+                    <label for="jam">Jam</label>
+                </div>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="jam" class="form-label fw-semibold">Jam</label>
-            <input type="time" class="form-control" id="jam" name="jam" value="{{ old('jam', substr($booking->jam, 0, 5)) }}" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="status" class="form-label fw-semibold">Status Booking</label>
-            <select class="form-select" id="status" name="status">
+        <div class="form-floating mb-3">
+            <select class="form-select" id="status" name="status" aria-label="Status Booking">
                 <option value="menunggu" {{ old('status', $booking->status) == 'menunggu' ? 'selected' : '' }}>Menunggu</option>
                 <option value="selesai" {{ old('status', $booking->status) == 'selesai' ? 'selected' : '' }}>Selesai</option>
                 <option value="batal" {{ old('status', $booking->status) == 'batal' ? 'selected' : '' }}>Batal</option>
             </select>
+            <label for="status">Status Booking</label>
         </div>
 
-        <div class="mb-3">
-            <label for="catatan" class="form-label fw-semibold">Catatan (Opsional)</label>
-            <textarea class="form-control" id="catatan" name="catatan" rows="3">{{ old('catatan', $booking->catatan) }}</textarea>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="catatan" name="catatan" placeholder="Catatan" style="height: 100px;">{{ old('catatan', $booking->catatan) }}</textarea>
+            <label for="catatan">Catatan (Opsional)</label>
         </div>
 
         <div class="mt-4">

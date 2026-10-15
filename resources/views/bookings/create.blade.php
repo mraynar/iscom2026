@@ -23,29 +23,34 @@
     <form action="{{ route('bookings.store') }}" method="POST">
         @csrf <!-- Wajib ada untuk keamanan CSRF Laravel -->
 
-        <div class="mb-3">
-            <label for="nama" class="form-label fw-semibold">Nama Pemesan</label>
-            <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}" placeholder="Masukkan nama pemesan" required>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}" placeholder="Nama Pemesan" required>
+            <label for="nama">Nama Pemesan</label>
         </div>
 
-        <div class="mb-3">
-            <label for="no_hp" class="form-label fw-semibold">No HP / WhatsApp</label>
-            <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ old('no_hp') }}" placeholder="Contoh: 08123456789" required>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ old('no_hp') }}" placeholder="No HP / WhatsApp" required>
+            <label for="no_hp">No HP / WhatsApp</label>
         </div>
 
-        <div class="mb-3">
-            <label for="tanggal" class="form-label fw-semibold">Tanggal</label>
-            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ old('tanggal') }}" required>
+        <div class="row g-2 mb-3">
+            <div class="col-6">
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ old('tanggal', now()->toDateString()) }}" placeholder="Tanggal" required>
+                    <label for="tanggal">Tanggal</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-floating">
+                    <input type="time" class="form-control" id="jam" name="jam" value="{{ old('jam') }}" placeholder="Jam" required>
+                    <label for="jam">Jam</label>
+                </div>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="jam" class="form-label fw-semibold">Jam</label>
-            <input type="time" class="form-control" id="jam" name="jam" value="{{ old('jam') }}" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="catatan" class="form-label fw-semibold">Catatan (Opsional)</label>
-            <textarea class="form-control" id="catatan" name="catatan" rows="3" placeholder="Tambahkan catatan khusus jika ada">{{ old('catatan') }}</textarea>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="catatan" name="catatan" placeholder="Catatan" style="height: 100px;">{{ old('catatan') }}</textarea>
+            <label for="catatan">Catatan (Opsional)</label>
         </div>
 
         <div class="mt-4">

@@ -117,30 +117,34 @@
 
                 <!-- Body Dialog -->
                 <div class="dialog-body text-start">
-                    <div class="mb-3">
-                        <label for="create_nama" class="form-label fw-semibold small text-dark">Nama Pemesan</label>
-                        <input type="text" class="form-control" id="create_nama" name="nama" value="{{ old('nama') }}" placeholder="Masukkan nama pemesan" required>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="create_nama" name="nama" value="{{ old('nama') }}" placeholder="Nama Pemesan" required>
+                        <label for="create_nama">Nama Pemesan</label>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="create_no_hp" class="form-label fw-semibold small text-dark">No HP / WhatsApp</label>
-                        <input type="text" class="form-control" id="create_no_hp" name="no_hp" value="{{ old('no_hp') }}" placeholder="Contoh: 08123456789" required>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="create_no_hp" name="no_hp" value="{{ old('no_hp') }}" placeholder="No HP / WhatsApp" required>
+                        <label for="create_no_hp">No HP / WhatsApp</label>
                     </div>
 
                     <div class="row g-2 mb-3">
                         <div class="col-6">
-                            <label for="create_tanggal" class="form-label fw-semibold small text-dark">Tanggal</label>
-                            <input type="date" class="form-control" id="create_tanggal" name="tanggal" value="{{ old('tanggal', now()->toDateString()) }}" required>
+                            <div class="form-floating">
+                                <input type="date" class="form-control" id="create_tanggal" name="tanggal" value="{{ old('tanggal', now()->toDateString()) }}" placeholder="Tanggal" required>
+                                <label for="create_tanggal">Tanggal</label>
+                            </div>
                         </div>
                         <div class="col-6">
-                            <label for="create_jam" class="form-label fw-semibold small text-dark">Jam</label>
-                            <input type="time" class="form-control" id="create_jam" name="jam" value="{{ old('jam') }}" required>
+                            <div class="form-floating">
+                                <input type="time" class="form-control" id="create_jam" name="jam" value="{{ old('jam') }}" placeholder="Jam" required>
+                                <label for="create_jam">Jam</label>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="mb-2">
-                        <label for="create_catatan" class="form-label fw-semibold small text-dark">Catatan (Opsional)</label>
-                        <textarea class="form-control" id="create_catatan" name="catatan" rows="3" placeholder="Tambahkan catatan khusus jika ada">{{ old('catatan') }}</textarea>
+                    <div class="form-floating mb-2">
+                        <textarea class="form-control" id="create_catatan" name="catatan" placeholder="Catatan" style="height: 100px;">{{ old('catatan') }}</textarea>
+                        <label for="create_catatan">Catatan (Opsional)</label>
                     </div>
                 </div>
 
@@ -257,39 +261,43 @@
                                         <button type="button" class="btn-close" commandfor="editDialog-{{ $booking->id }}" command="close" aria-label="Close"></button>
                                     </div>
                                     <div class="dialog-body text-start">
-                                        <div class="mb-3">
-                                            <label for="edit_nama_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Nama Pemesan</label>
-                                            <input type="text" class="form-control" id="edit_nama_{{ $booking->id }}" name="nama" value="{{ old('nama', $booking->nama) }}" required>
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="edit_nama_{{ $booking->id }}" name="nama" value="{{ old('nama', $booking->nama) }}" placeholder="Nama Pemesan" required>
+                                            <label for="edit_nama_{{ $booking->id }}">Nama Pemesan</label>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label for="edit_no_hp_{{ $booking->id }}" class="form-label fw-semibold small text-dark">No HP / WhatsApp</label>
-                                            <input type="text" class="form-control" id="edit_no_hp_{{ $booking->id }}" name="no_hp" value="{{ old('no_hp', $booking->no_hp) }}" required>
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="edit_no_hp_{{ $booking->id }}" name="no_hp" value="{{ old('no_hp', $booking->no_hp) }}" placeholder="No HP / WhatsApp" required>
+                                            <label for="edit_no_hp_{{ $booking->id }}">No HP / WhatsApp</label>
                                         </div>
 
                                         <div class="row g-2 mb-3">
                                             <div class="col-6">
-                                                <label for="edit_tanggal_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Tanggal</label>
-                                                <input type="date" class="form-control" id="edit_tanggal_{{ $booking->id }}" name="tanggal" value="{{ old('tanggal', $booking->tanggal) }}" required>
+                                                <div class="form-floating">
+                                                    <input type="date" class="form-control" id="edit_tanggal_{{ $booking->id }}" name="tanggal" value="{{ old('tanggal', $booking->tanggal) }}" placeholder="Tanggal" required>
+                                                    <label for="edit_tanggal_{{ $booking->id }}">Tanggal</label>
+                                                </div>
                                             </div>
                                             <div class="col-6">
-                                                <label for="edit_jam_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Jam</label>
-                                                <input type="time" class="form-control" id="edit_jam_{{ $booking->id }}" name="jam" value="{{ old('jam', substr($booking->jam, 0, 5)) }}" required>
+                                                <div class="form-floating">
+                                                    <input type="time" class="form-control" id="edit_jam_{{ $booking->id }}" name="jam" value="{{ old('jam', substr($booking->jam, 0, 5)) }}" placeholder="Jam" required>
+                                                    <label for="edit_jam_{{ $booking->id }}">Jam</label>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label for="edit_status_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Status Booking</label>
-                                            <select class="form-select" id="edit_status_{{ $booking->id }}" name="status">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-select" id="edit_status_{{ $booking->id }}" name="status" aria-label="Status Booking">
                                                 <option value="menunggu" {{ old('status', $booking->status) == 'menunggu' ? 'selected' : '' }}>Menunggu</option>
                                                 <option value="selesai" {{ old('status', $booking->status) == 'selesai' ? 'selected' : '' }}>Selesai</option>
                                                 <option value="batal" {{ old('status', $booking->status) == 'batal' ? 'selected' : '' }}>Batal</option>
                                             </select>
+                                            <label for="edit_status_{{ $booking->id }}">Status Booking</label>
                                         </div>
 
-                                        <div class="mb-2">
-                                            <label for="edit_catatan_{{ $booking->id }}" class="form-label fw-semibold small text-dark">Catatan (Opsional)</label>
-                                            <textarea class="form-control" id="edit_catatan_{{ $booking->id }}" name="catatan" rows="2">{{ old('catatan', $booking->catatan) }}</textarea>
+                                        <div class="form-floating mb-2">
+                                            <textarea class="form-control" id="edit_catatan_{{ $booking->id }}" name="catatan" placeholder="Catatan" style="height: 90px;">{{ old('catatan', $booking->catatan) }}</textarea>
+                                            <label for="edit_catatan_{{ $booking->id }}">Catatan (Opsional)</label>
                                         </div>
                                     </div>
                                     <div class="dialog-footer d-flex justify-content-end gap-2">
