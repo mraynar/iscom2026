@@ -7,10 +7,27 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    // 1. Tampilkan semua data booking dengan pagination & KPI dinamis
-    public function index()
+    // 1. Tampilkan semua data booking dengan pagination & KPI dinamis (Fungsional Filter & Pencarian)
+    public function index(Request $request)
     {
-        $bookings = Booking::latest()->paginate(5);
+        $query = Booking::latest();
+
+        // 1. Fitur Pencarian Fungsional (Nama Pemesan atau No HP)
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nama', 'like', "%{$search}%")
+                    ->orWhere('no_hp', 'like', "%{$search}%");
+            });
+        }
+
+        // 2. Fitur Filter Status Fungsional (menunggu, selesai, batal)
+        if ($request->filled('status') && in_array($request->status, ['menunggu', 'selesai', 'batal'])) {
+            $query->where('status', $request->status);
+        }
+
+        // Pagination 5 data per halaman dengan mempertahankan query string pencarian/filter
+        $bookings = $query->paginate(5)->withQueryString();
 
         // Data Dinamis untuk 4 KPI Cards Dashboard
         $totalBooking = Booking::count();
