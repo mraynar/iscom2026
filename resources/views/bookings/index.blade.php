@@ -138,5 +138,10 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Komponen Pagination Bootstrap 5 Terintegrasi dengan Laravel Eloquent -->
+    <div class="mt-4 d-flex justify-content-end">
+        {{ $bookings->links() }}
+    </div>
 </div>
 @endsection

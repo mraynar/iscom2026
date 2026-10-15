@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    // 1. Tampilkan semua data booking
+    // 1. Tampilkan semua data booking dengan pagination
     public function index()
     {
-        $bookings = Booking::latest()->get();
+        $bookings = Booking::latest()->paginate(5);
+
         return view('bookings.index', compact('bookings'));
     }
 
@@ -24,10 +25,10 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama'    => 'required|string|max:255',
-            'no_hp'   => 'required|string|max:20',
+            'nama' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:20',
             'tanggal' => 'required|date',
-            'jam'     => 'required|date_format:H:i',
+            'jam' => 'required|date_format:H:i',
             'catatan' => 'nullable|string',
         ]);
 
@@ -46,11 +47,11 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking)
     {
         $validated = $request->validate([
-            'nama'    => 'required|string|max:255',
-            'no_hp'   => 'required|string|max:20',
+            'nama' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:20',
             'tanggal' => 'required|date',
-            'jam'     => 'required|date_format:H:i',
-            'status'  => 'required|in:menunggu,selesai,batal',
+            'jam' => 'required|date_format:H:i',
+            'status' => 'required|in:menunggu,selesai,batal',
             'catatan' => 'nullable|string',
         ]);
 
@@ -63,6 +64,7 @@ class BookingController extends Controller
     public function destroy(Booking $booking)
     {
         $booking->delete();
+
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil dihapus!');
     }
 }
