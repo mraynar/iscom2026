@@ -2,6 +2,19 @@
 
 @section('content')
 <div class="card border-0 shadow-sm rounded-4 p-4 mx-auto" style="max-width: 600px;">
+    <!-- Navigasi Jejak Halaman (Breadcrumb) -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Booking</a>
+            </li>
+            <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">Edit Booking</li>
+        </ol>
+    </nav>
+
     <h4 class="fw-bold mb-4">Edit Data Booking</h4>
 
     <!-- Alert Notifikasi Tepat di Atas Form -->
