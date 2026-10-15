@@ -179,7 +179,14 @@
                 <tbody>
                     @forelse($bookings as $booking)
                     <tr>
-                        <td class="fw-medium text-dark">{{ $booking->nama }}</td>
+                        <td class="fw-medium">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-light text-secondary rounded-circle d-flex align-items-center justify-content-center me-2 border" style="width: 32px; height: 32px;">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+                                <span>{{ $booking->nama }}</span>
+                            </div>
+                        </td>
                         <td class="text-secondary">{{ $booking->no_hp }}</td>
                         <td class="text-secondary">{{ $booking->tanggal }}</td>
                         <td class="text-secondary">{{ $booking->jam }}</td>
