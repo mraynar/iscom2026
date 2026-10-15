@@ -116,6 +116,34 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
         }
+
+        /* Modern Pagination SaaS Styling */
+        nav:has(.pagination) {
+            width: 100%;
+        }
+        .pagination {
+            margin-bottom: 0;
+            gap: 4px;
+        }
+        .pagination .page-item:first-child .page-link,
+        .pagination .page-item:last-child .page-link,
+        .pagination .page-link {
+            border-radius: 6px !important;
+            padding: 6px 12px;
+            font-size: 14px;
+            color: #4b5563;
+            border-color: #e5e7eb;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: #fff;
+        }
+        .pagination .page-item.disabled .page-link {
+            background-color: #f8fafc;
+            color: #9ca3af;
+            border-color: #e5e7eb;
+        }
     </style>
 </head>
 <body class="bg-light">

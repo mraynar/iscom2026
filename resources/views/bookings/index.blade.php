@@ -140,7 +140,7 @@
     </div>
 
     <!-- Komponen Pagination Bootstrap 5 Terintegrasi dengan Laravel Eloquent -->
-    <div class="mt-4 d-flex justify-content-end">
+    <div class="mt-4 pt-3 border-top">
         {{ $bookings->links() }}
     </div>
 </div>
