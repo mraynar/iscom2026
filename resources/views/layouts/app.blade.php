@@ -70,17 +70,50 @@
         }
         .dropdown-menu {
             font-size: 14px;
-            border: 1px solid #e9ecef;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            border-radius: 8px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            border-radius: 12px;
             padding: 6px;
+            min-width: 160px;
         }
         .dropdown-item {
-            border-radius: 4px;
-            padding: 6px 12px;
+            color: #334155 !important;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 8px 14px;
+            transition: all 0.15s ease-in-out;
         }
-        .dropdown-item:hover {
-            background-color: #f1f5f9;
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #f1f5f9 !important;
+            color: #0d6efd !important;
+            font-weight: 600;
+            padding-left: 17px;
+        }
+        .dropdown-item.active,
+        .dropdown-item.active:visited {
+            background-color: #e0f2fe !important;
+            color: #0284c7 !important;
+            font-weight: 600;
+        }
+        .dropdown-item.active:hover,
+        .dropdown-item.active:focus {
+            background-color: #bae6fd !important;
+            color: #0369a1 !important;
+            padding-left: 17px;
+        }
+        .dropdown-item.text-danger {
+            color: #ef4444 !important;
+        }
+        .dropdown-item.text-danger:hover,
+        .dropdown-item.text-danger:focus {
+            background-color: #fee2e2 !important;
+            color: #dc2626 !important;
+        }
+        .dropdown-divider {
+            border-color: #f1f5f9;
+            margin: 6px 0;
         }
 
         /* Kontainer Utama Ditengah secara Vertikal & Horizontal */

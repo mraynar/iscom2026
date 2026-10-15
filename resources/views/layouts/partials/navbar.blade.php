@@ -41,17 +41,17 @@
             <li><hr class="dropdown-divider"></li>
             <li>
               <a class="dropdown-item {{ request('status') == 'menunggu' ? 'active fw-medium' : '' }}" href="{{ route('bookings.index', array_merge(request()->query(), ['status' => 'menunggu'])) }}">
-                <span class="badge text-bg-warning me-1">●</span> Menunggu
+                Menunggu
               </a>
             </li>
             <li>
               <a class="dropdown-item {{ request('status') == 'selesai' ? 'active fw-medium' : '' }}" href="{{ route('bookings.index', array_merge(request()->query(), ['status' => 'selesai'])) }}">
-                <span class="badge text-bg-success me-1">●</span> Selesai
+                Selesai
               </a>
             </li>
             <li>
               <a class="dropdown-item {{ request('status') == 'batal' ? 'active fw-medium' : '' }}" href="{{ route('bookings.index', array_merge(request()->query(), ['status' => 'batal'])) }}">
-                <span class="badge text-bg-danger me-1">●</span> Batal
+                Batal
               </a>
             </li>
           </ul>
