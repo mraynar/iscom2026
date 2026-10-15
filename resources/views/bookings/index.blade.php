@@ -193,7 +193,7 @@
                         <th scope="col" class="py-3">Tanggal</th>
                         <th scope="col" class="py-3">Jam</th>
                         <th scope="col" class="py-3">Status</th>
-                        <th scope="col" class="py-3 text-center" style="width: 100px;">Aksi</th>
+                        <th scope="col" class="py-3 text-center" style="width: 140px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -222,17 +222,17 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <!-- Dropdown Menu Aksi Kebab (Bootstrap 5.3) -->
-                            <div class="dropdown">
-                                <button class="btn btn-light btn-sm text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-three-dots-vertical"></i>
+                            <!-- 3 Tombol Aksi Icon-Only (Bootstrap Icons) -->
+                            <div class="d-inline-flex gap-1 align-items-center justify-content-center">
+                                <button type="button" class="btn btn-success btn-sm" commandfor="detailDialog-{{ $booking->id }}" command="show-modal" title="Detail Booking">
+                                    <i class="bi bi-eye"></i>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
-                                    <li><a class="dropdown-item py-2" href="#" commandfor="detailDialog-{{ $booking->id }}" command="show-modal"><i class="bi bi-eye me-2 text-info"></i> Detail</a></li>
-                                    <li><a class="dropdown-item py-2" href="#" commandfor="editDialog-{{ $booking->id }}" command="show-modal"><i class="bi bi-pencil me-2 text-warning"></i> Edit</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item py-2 text-danger" href="#" commandfor="deleteDialog-{{ $booking->id }}" command="show-modal"><i class="bi bi-trash me-2"></i> Hapus</a></li>
-                                </ul>
+                                <button type="button" class="btn btn-warning btn-sm text-dark" commandfor="editDialog-{{ $booking->id }}" command="show-modal" title="Edit Data">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm" commandfor="deleteDialog-{{ $booking->id }}" command="show-modal" title="Hapus Data">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                             </div>
 
                             <!-- MODAL 2: Detail Informasi Booking (<dialog> Berukuran Seragam) -->
@@ -392,7 +392,11 @@
                                 <span class="badge px-3 py-2">&nbsp;</span>
                             </td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-light btn-sm text-secondary">&nbsp;</button>
+                                <div class="d-inline-flex gap-1 align-items-center justify-content-center">
+                                    <button type="button" class="btn btn-sm">&nbsp;</button>
+                                    <button type="button" class="btn btn-sm">&nbsp;</button>
+                                    <button type="button" class="btn btn-sm">&nbsp;</button>
+                                </div>
                             </td>
                         </tr>
                         @endfor
