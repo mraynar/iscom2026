@@ -288,8 +288,11 @@
     <!-- Progressive Enhancement untuk HTML Invoker Commands API (commandfor / command) -->
     <script>
         document.addEventListener('click', (e) => {
-            const trigger = e.target.closest('button[commandfor]');
+            const trigger = e.target.closest('[commandfor]');
             if (!trigger) return;
+            if (trigger.tagName === 'A') {
+                e.preventDefault();
+            }
             const targetId = trigger.getAttribute('commandfor');
             const command = trigger.getAttribute('command');
             const dialog = document.getElementById(targetId);

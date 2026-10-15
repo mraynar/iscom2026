@@ -193,7 +193,7 @@
                         <th scope="col" class="py-3">Tanggal</th>
                         <th scope="col" class="py-3">Jam</th>
                         <th scope="col" class="py-3">Status</th>
-                        <th scope="col" class="py-3 text-center" style="width: 220px;">Aksi</th>
+                        <th scope="col" class="py-3 text-center" style="width: 100px;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -222,10 +222,18 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <!-- Tombol Detail (Memicu Modal Detail) -->
-                            <button type="button" class="btn btn-success btn-sm me-1" commandfor="detailDialog-{{ $booking->id }}" command="show-modal">
-                                Detail
-                            </button>
+                            <!-- Dropdown Menu Aksi Kebab (Bootstrap 5.3) -->
+                            <div class="dropdown">
+                                <button class="btn btn-light btn-sm text-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                                    <li><a class="dropdown-item py-2" href="#" commandfor="detailDialog-{{ $booking->id }}" command="show-modal"><i class="bi bi-eye me-2 text-info"></i> Detail</a></li>
+                                    <li><a class="dropdown-item py-2" href="#" commandfor="editDialog-{{ $booking->id }}" command="show-modal"><i class="bi bi-pencil me-2 text-warning"></i> Edit</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item py-2 text-danger" href="#" commandfor="deleteDialog-{{ $booking->id }}" command="show-modal"><i class="bi bi-trash me-2"></i> Hapus</a></li>
+                                </ul>
+                            </div>
 
                             <!-- MODAL 2: Detail Informasi Booking (<dialog> Berukuran Seragam) -->
                             <dialog class="dialog border-0" id="detailDialog-{{ $booking->id }}">
@@ -273,10 +281,6 @@
                                 </div>
                             </dialog>
 
-                            <!-- Tombol Edit (Memicu Modal Edit) -->
-                            <button type="button" class="btn btn-warning btn-sm text-dark me-1" commandfor="editDialog-{{ $booking->id }}" command="show-modal">
-                                Edit
-                            </button>
 
                             <!-- MODAL 3: Edit Data Booking (<dialog> Berukuran Seragam) -->
                             <dialog class="dialog border-0" id="editDialog-{{ $booking->id }}">
@@ -338,10 +342,6 @@
                                 </form>
                             </dialog>
                             
-                            <!-- Tombol Hapus (Memicu Modal Konfirmasi Hapus) -->
-                            <button type="button" class="btn btn-danger btn-sm" commandfor="deleteDialog-{{ $booking->id }}" command="show-modal">
-                                Hapus
-                            </button>
 
                             <!-- MODAL 4: Konfirmasi Hapus Data (<dialog> Berukuran Seragam) -->
                             <dialog class="dialog border-0" id="deleteDialog-{{ $booking->id }}">
@@ -392,9 +392,7 @@
                                 <span class="badge px-3 py-2">&nbsp;</span>
                             </td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-sm me-1">&nbsp;</button>
-                                <button type="button" class="btn btn-sm me-1">&nbsp;</button>
-                                <button type="button" class="btn btn-sm">&nbsp;</button>
+                                <button type="button" class="btn btn-light btn-sm text-secondary">&nbsp;</button>
                             </td>
                         </tr>
                         @endfor
