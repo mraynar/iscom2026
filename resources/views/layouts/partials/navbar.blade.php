@@ -1,9 +1,8 @@
 <!-- Navbar Bersih & Selaras (Bootstrap 5.3) -->
 <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm sticky-top">
   <div class="container">
-    <!-- Brand / Logo Aplikasi (Hanya menggunakan Icon Booking) -->
-    <a class="navbar-brand fw-bold text-dark d-flex align-items-center gap-2" href="{{ route('bookings.index') }}">
-      <i class="bi bi-calendar-check-fill text-primary fs-5"></i>
+    <!-- Brand / Logo Aplikasi -->
+    <a class="navbar-brand fw-bold text-dark d-flex align-items-center" href="{{ route('bookings.index') }}">
       <span>Booking<span class="text-primary">App</span></span>
     </a>
 
@@ -66,12 +65,12 @@
         @endif
         <div class="input-group input-group-sm" style="width: 240px;">
           <input class="form-control" type="search" name="search" value="{{ request('search') }}" placeholder="Cari nama / no hp..." aria-label="Search">
-          <button class="btn btn-outline-primary" type="submit" title="Cari Data">
-            <i class="bi bi-search"></i>
+          <button class="btn btn-outline-primary" type="submit">
+            Cari
           </button>
           @if(request('search'))
-            <a href="{{ route('bookings.index', request()->only('status')) }}" class="btn btn-outline-secondary" title="Reset Pencarian">
-              <i class="bi bi-x-lg"></i>
+            <a href="{{ route('bookings.index', request()->only('status')) }}" class="btn btn-outline-secondary">
+              Reset
             </a>
           @endif
         </div>

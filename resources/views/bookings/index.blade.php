@@ -38,7 +38,7 @@
         </div>
         <div>
             <span class="badge bg-white text-secondary border px-3 py-2 shadow-sm rounded-3">
-                <i class="bi bi-calendar3 me-1 text-primary"></i> {{ now()->translatedFormat('d F Y') }}
+                {{ now()->translatedFormat('d F Y') }}
             </span>
         </div>
     </div>
@@ -48,14 +48,9 @@
         <!-- 1. Total Booking -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-kpi border-0 shadow-sm h-100">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="kpi-icon-box" style="background-color: #eef2ff; color: #4f46e5;">
-                        <i class="bi bi-calendar3 fs-4"></i>
-                    </div>
-                    <div class="overflow-hidden">
-                        <h4 class="kpi-value">{{ $totalBooking }}</h4>
-                        <p class="kpi-label">Total Booking</p>
-                    </div>
+                <div class="overflow-hidden">
+                    <h4 class="kpi-value">{{ $totalBooking }}</h4>
+                    <p class="kpi-label mb-0">Total Booking</p>
                 </div>
             </div>
         </div>
@@ -63,14 +58,9 @@
         <!-- 2. Total Pelanggan -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-kpi border-0 shadow-sm h-100">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="kpi-icon-box" style="background-color: #fee2e2; color: #ef4444;">
-                        <i class="bi bi-people fs-4"></i>
-                    </div>
-                    <div class="overflow-hidden">
-                        <h4 class="kpi-value">{{ $totalPelanggan }}</h4>
-                        <p class="kpi-label">Total Pelanggan</p>
-                    </div>
+                <div class="overflow-hidden">
+                    <h4 class="kpi-value">{{ $totalPelanggan }}</h4>
+                    <p class="kpi-label mb-0">Total Pelanggan</p>
                 </div>
             </div>
         </div>
@@ -78,14 +68,9 @@
         <!-- 3. Booking Hari Ini -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-kpi border-0 shadow-sm h-100">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="kpi-icon-box" style="background-color: #dcfce7; color: #16a34a;">
-                        <i class="bi bi-wallet2 fs-4"></i>
-                    </div>
-                    <div class="overflow-hidden">
-                        <h4 class="kpi-value">{{ $bookingHariIni }}</h4>
-                        <p class="kpi-label">Booking Hari Ini</p>
-                    </div>
+                <div class="overflow-hidden">
+                    <h4 class="kpi-value">{{ $bookingHariIni }}</h4>
+                    <p class="kpi-label mb-0">Booking Hari Ini</p>
                 </div>
             </div>
         </div>
@@ -93,14 +78,9 @@
         <!-- 4. Total Pendapatan (Wajib 1 Line) -->
         <div class="col-12 col-sm-6 col-xl-3">
             <div class="card card-kpi border-0 shadow-sm h-100">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="kpi-icon-box" style="background-color: #fef3c7; color: #d97706;">
-                        <i class="bi bi-currency-dollar fs-4"></i>
-                    </div>
-                    <div class="overflow-hidden">
-                        <h4 class="kpi-value-currency text-nowrap">{{ $totalPendapatan }}</h4>
-                        <p class="kpi-label">Total Pendapatan</p>
-                    </div>
+                <div class="overflow-hidden">
+                    <h4 class="kpi-value-currency text-nowrap mb-0">{{ $totalPendapatan }}</h4>
+                    <p class="kpi-label mb-0">Total Pendapatan</p>
                 </div>
             </div>
         </div>
@@ -114,7 +94,7 @@
                 <h4 class="fw-bold mb-0 text-dark">Daftar Booking</h4>
                 @if(request('status') || request('search'))
                     <a href="{{ route('bookings.index') }}" class="badge bg-light text-secondary border text-decoration-none py-1 px-2 small">
-                        Reset Filter <i class="bi bi-x-circle ms-1"></i>
+                        Reset Filter
                     </a>
                 @endif
             </div>
@@ -336,7 +316,6 @@
                                         <button type="button" class="btn-close" commandfor="deleteDialog-{{ $booking->id }}" command="close" aria-label="Close"></button>
                                     </div>
                                     <div class="dialog-body d-flex flex-column justify-content-center align-items-center py-4">
-                                        <i class="bi bi-exclamation-circle text-warning display-3 mb-3 d-block"></i>
                                         <h5 class="fw-bold mb-2">Hapus Data Pemesan?</h5>
                                         <p class="text-muted mb-0 px-3">
                                             Apakah Anda yakin ingin menghapus data booking pemesan <strong>"{{ $booking->nama }}"</strong>? Tindakan ini tidak dapat dibatalkan.
@@ -361,7 +340,6 @@
                     @empty
                     <tr>
                         <td colspan="6" class="text-center py-5 text-muted">
-                            <i class="bi bi-inbox fs-1 d-block mb-2 text-secondary opacity-50"></i>
                             Belum ada data booking yang sesuai.
                         </td>
                     </tr>
@@ -371,15 +349,17 @@
                     @if($bookings->count() > 0 && $bookings->count() < 5)
                         @for($i = $bookings->count(); $i < 5; $i++)
                         <tr class="placeholder-row" style="visibility: hidden; pointer-events: none; user-select: none;">
-                            <td class="py-3">&nbsp;</td>
-                            <td class="text-secondary py-3">&nbsp;</td>
-                            <td class="text-secondary py-3">&nbsp;</td>
-                            <td class="text-secondary py-3">&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td class="text-secondary">&nbsp;</td>
+                            <td class="text-secondary">&nbsp;</td>
+                            <td class="text-secondary">&nbsp;</td>
                             <td>
                                 <span class="badge px-3 py-2">&nbsp;</span>
                             </td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-sm me-1">&nbsp;</button>
+                                <button type="button" class="btn btn-sm me-1">&nbsp;</button>
+                                <button type="button" class="btn btn-sm">&nbsp;</button>
                             </td>
                         </tr>
                         @endfor

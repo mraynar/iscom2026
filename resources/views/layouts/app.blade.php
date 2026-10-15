@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Booking</title>
 
-    <!-- Bootstrap 5.3 CSS & Icons -->
+    <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
         /* CSS Dasar Materi Peserta & Posisi Tengah */
@@ -257,11 +256,19 @@
             border-color: #e5e7eb;
         }
 
-        /* Invisible spacer rows to keep under-5 data tables perfectly matched to 5-data height */
-        .placeholder-row, .placeholder-row td {
+        /* Presisi Tinggi Baris Konsisten: Menjaga tabel data < 5 persis sama tingginya dengan 5 data */
+        .table tbody tr {
+            height: 52px;
+        }
+        .placeholder-row {
+            height: 52px !important;
+        }
+        .placeholder-row td {
             background: transparent !important;
-            border: none !important;
+            border-color: transparent !important;
             box-shadow: none !important;
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
         }
     </style>
 </head>
