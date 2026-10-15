@@ -85,6 +85,19 @@
             max-width: 500px;
         }
 
+        /* Penyesuaian KPI Card pada Grid Kolom agar Presisi & Proporsional */
+        [class*="col-"] > .card,
+        .card-kpi {
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 18px 20px !important;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-kpi:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+        }
+
         /* Style Tabel Legacy (hanya berlaku jika tidak memakai class .table Bootstrap) */
         table:not(.table) { width: 100%; border-collapse: collapse; margin-top: 15px; }
         table:not(.table) th, table:not(.table) td { border: 1px solid #ddd !important; padding: 10px !important; text-align: left; }

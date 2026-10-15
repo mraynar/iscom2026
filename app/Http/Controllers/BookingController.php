@@ -7,12 +7,28 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    // 1. Tampilkan semua data booking dengan pagination
+    // 1. Tampilkan semua data booking dengan pagination dan KPI metrik
     public function index()
     {
         $bookings = Booking::latest()->paginate(5);
 
-        return view('bookings.index', compact('bookings'));
+        // Data Dinamis untuk 4 KPI Cards
+        $totalBooking = Booking::count();
+        $totalPelanggan = Booking::distinct('no_hp')->count('no_hp');
+        $bookingHariIni = Booking::whereDate('tanggal', now()->toDateString())->count();
+        $bookingSelesai = Booking::where('status', 'selesai')->count();
+        $bookingMenunggu = Booking::where('status', 'menunggu')->count();
+        $totalPendapatan = 'Rp '.number_format($totalBooking * 250000, 0, ',', '.');
+
+        return view('bookings.index', compact(
+            'bookings',
+            'totalBooking',
+            'totalPelanggan',
+            'bookingHariIni',
+            'bookingSelesai',
+            'bookingMenunggu',
+            'totalPendapatan'
+        ));
     }
 
     // 2. Tampilkan form tambah booking

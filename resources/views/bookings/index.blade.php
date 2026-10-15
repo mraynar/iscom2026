@@ -1,29 +1,102 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Pembungkus Kartu Putih Bersih SaaS Modern -->
-<div class="card border-0 shadow-sm rounded-4 p-4">
-    <!-- Navigasi Jejak Halaman (Breadcrumb) di Atas Form / Tabel -->
-    <nav aria-label="breadcrumb" class="mb-3">
-        <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item">
-                <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">Daftar Booking</li>
-        </ol>
-    </nav>
+<!-- Kontainer Utama Terpusat (Semua Elemen Pas Ditengah) -->
+<div class="w-100 my-auto" style="max-width: 1050px;">
 
-    <!-- Header Halaman & Tombol Tambah Data -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="fw-bold mb-0">Daftar Jadwal Booking</h4>
-        <a href="{{ route('bookings.create') }}" class="btn btn-primary">+ Tambah Booking</a>
+    <!-- Header Dashboard & Navigasi Breadcrumb -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold mb-1 text-dark">Dashboard</h4>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">Daftar Booking</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <span class="badge bg-white text-secondary border px-3 py-2 shadow-sm rounded-3">
+                <i class="bi bi-calendar3 me-1 text-primary"></i> {{ now()->translatedFormat('d F Y') }}
+            </span>
+        </div>
     </div>
 
-    <!-- Alert Notifikasi Tepat di Atas Tabel -->
-    @include('layouts.partials.alerts')
+    <!-- 4 KPI Cards Ringkasan Metrik Dinamis (Sesuai Referensi Gambar) -->
+    <div class="row g-3 mb-4">
+        <!-- 1. Total Booking -->
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card card-kpi border-0 shadow-sm rounded-4 h-100">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-3 bg-primary-subtle text-primary d-flex align-items-center justify-content-center flex-shrink-0" style="width: 52px; height: 52px;">
+                        <i class="bi bi-calendar3 fs-4"></i>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold mb-0 text-dark">{{ $totalBooking }}</h4>
+                        <span class="text-secondary small fw-medium">Total Booking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Total Pelanggan -->
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card card-kpi border-0 shadow-sm rounded-4 h-100">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-3 bg-danger-subtle text-danger d-flex align-items-center justify-content-center flex-shrink-0" style="width: 52px; height: 52px;">
+                        <i class="bi bi-people fs-4"></i>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold mb-0 text-dark">{{ $totalPelanggan }}</h4>
+                        <span class="text-secondary small fw-medium">Total Pelanggan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Booking Hari Ini -->
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card card-kpi border-0 shadow-sm rounded-4 h-100">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-3 bg-success-subtle text-success d-flex align-items-center justify-content-center flex-shrink-0" style="width: 52px; height: 52px;">
+                        <i class="bi bi-wallet2 fs-4"></i>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold mb-0 text-dark">{{ $bookingHariIni }}</h4>
+                        <span class="text-secondary small fw-medium">Booking Hari Ini</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Total Pendapatan -->
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card card-kpi border-0 shadow-sm rounded-4 h-100">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-3 bg-warning-subtle text-warning d-flex align-items-center justify-content-center flex-shrink-0" style="width: 52px; height: 52px;">
+                        <i class="bi bi-currency-dollar fs-4"></i>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold mb-0 text-dark">{{ $totalPendapatan }}</h4>
+                        <span class="text-secondary small fw-medium">Total Pendapatan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pembungkus Kartu Putih Bersih SaaS Modern -->
+    <div class="card border-0 shadow-sm rounded-4 p-4">
+        <!-- Header Halaman & Tombol Tambah Data -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="fw-bold mb-0">Daftar Booking</h4>
+            <a href="{{ route('bookings.create') }}" class="btn btn-primary">+ Tambah Booking</a>
+        </div>
+
+        <!-- Alert Notifikasi Tepat di Atas Tabel -->
+        @include('layouts.partials.alerts')
 
     <!-- Tabel Data Booking (Bootstrap 5.3: Striped, Hover, Borderless) -->
     <div class="table-responsive">
@@ -156,5 +229,6 @@
     <div class="mt-4 pt-3 border-top">
         {{ $bookings->links() }}
     </div>
+</div>
 </div>
 @endsection
