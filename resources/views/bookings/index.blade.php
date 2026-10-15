@@ -4,7 +4,7 @@
 <!-- Kontainer Utama Terpusat (Semua Elemen Pas Ditengah dan Sejajar Sempurna) -->
 <div class="w-100 my-auto" style="max-width: 1060px;">
 
-    <!-- 1. Header Dashboard & Navigasi Breadcrumb -->
+    <!-- 1. Header Dashboard & Navigasi Breadcrumb Fungsional -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h4 class="fw-bold mb-1 text-dark">Dashboard</h4>
@@ -13,7 +13,23 @@
                     <li class="breadcrumb-item">
                         <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Home</a>
                     </li>
-                    <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">Daftar Booking</li>
+                    @if(request('status') || request('search'))
+                        <li class="breadcrumb-item">
+                            <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Daftar Booking</a>
+                        </li>
+                        @if(request('status'))
+                            <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">
+                                Filter: {{ ucfirst(request('status')) }}
+                            </li>
+                        @endif
+                        @if(request('search'))
+                            <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">
+                                Cari: "{{ request('search') }}"
+                            </li>
+                        @endif
+                    @else
+                        <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">Daftar Booking</li>
+                    @endif
                 </ol>
             </nav>
         </div>
@@ -87,19 +103,26 @@
         </div>
     </div>
 
-    <!-- 3. Pembungkus Kartu Putih Bersih SaaS Modern (Sejajar Sempurna dengan 4 KPI Cards) -->
-    <div class="card border-0 shadow-sm rounded-4 p-4 w-100">
+    <!-- 3. Pembungkus Kartu Tabel Utama (Ukuran Konsisten & Tetap Sama pada Data < 5 Maupun 5 Data) -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 w-100 d-flex flex-column" style="min-height: 580px;">
         <!-- Header Tabel & Tombol Tambah Data -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="fw-bold mb-0 text-dark">Daftar Booking</h4>
+            <div class="d-flex align-items-center gap-2">
+                <h4 class="fw-bold mb-0 text-dark">Daftar Booking</h4>
+                @if(request('status') || request('search'))
+                    <a href="{{ route('bookings.index') }}" class="badge bg-light text-secondary border text-decoration-none py-1 px-2 small">
+                        Reset Filter <i class="bi bi-x-circle ms-1"></i>
+                    </a>
+                @endif
+            </div>
             <a href="{{ route('bookings.create') }}" class="btn btn-primary px-3 py-2">+ Tambah Booking</a>
         </div>
 
         <!-- Alert Notifikasi Tepat di Atas Tabel -->
         @include('layouts.partials.alerts')
 
-        <!-- Tabel Data Booking (Bootstrap 5.3: Striped, Hover, Borderless) -->
-        <div class="table-responsive">
+        <!-- Tabel Data Booking (Bootstrap 5.3: Striped, Hover, Borderless) dengan Min-Height Konsisten -->
+        <div class="table-responsive flex-grow-1" style="min-height: 380px;">
             <table class="table table-hover table-striped table-borderless align-middle mb-0">
                 <thead>
                     <tr class="border-bottom">
@@ -218,15 +241,18 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center py-4 text-muted">Belum ada data booking.</td>
+                        <td colspan="6" class="text-center py-5 text-muted">
+                            <i class="bi bi-inbox fs-1 d-block mb-2 text-secondary opacity-50"></i>
+                            Belum ada data booking yang sesuai.
+                        </td>
                     </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
 
-        <!-- Komponen Pagination Bootstrap 5 Terintegrasi dengan Laravel Eloquent -->
-        <div class="mt-4 pt-3 border-top">
+        <!-- Komponen Pagination Bootstrap 5 Terintegrasi dengan Laravel Eloquent (Selalu Terkunci Rapi di Bawah) -->
+        <div class="mt-auto pt-3 border-top">
             {{ $bookings->links() }}
         </div>
     </div>

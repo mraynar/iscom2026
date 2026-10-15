@@ -9,7 +9,7 @@
                 <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Booking</a>
+                <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Daftar Booking</a>
             </li>
             <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">Tambah Booking</li>
         </ol>
