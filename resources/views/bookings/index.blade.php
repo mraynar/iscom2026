@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- Navigasi Jejak Halaman (Breadcrumb) -->
+<nav aria-label="breadcrumb" class="mb-3 w-100" style="max-width: 1000px;">
+    <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">Daftar Booking</li>
+    </ol>
+</nav>
+
 <!-- Pembungkus Kartu Putih Bersih SaaS Modern -->
 <div class="card border-0 shadow-sm rounded-4 p-4">
     <!-- Header Halaman & Tombol Tambah Data -->
