@@ -16,10 +16,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3 gap-lg-1">
         <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('bookings.index') && !request()->has('status') && !request()->has('search') ? 'active' : '' }}" href="{{ route('bookings.index') }}">Dashboard</a>
+          <a class="nav-link {{ request()->routeIs('bookings.index') ? 'active' : '' }}" href="{{ route('bookings.index') }}">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ request()->routeIs('bookings.*') ? 'active' : '' }}" href="{{ route('bookings.index') }}">Jadwal Booking</a>
+          <a class="nav-link" href="{{ route('bookings.index') }}#daftar-booking">Jadwal Booking</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {{ request()->has('status') ? 'active text-primary fw-semibold' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

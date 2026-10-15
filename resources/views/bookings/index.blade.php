@@ -11,24 +11,27 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item">
-                        <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Home</a>
+                        <a class="breadcrumb-link" href="{{ route('bookings.index') }}">Home</a>
                     </li>
-                    @if(request('status') || request('search'))
+                    <li class="breadcrumb-item">
+                        <a class="breadcrumb-link" href="{{ route('bookings.index') }}">Dashboard</a>
+                    </li>
+                    @if(request('status'))
                         <li class="breadcrumb-item">
-                            <a class="breadcrumb-link text-decoration-none text-muted" href="{{ route('bookings.index') }}">Daftar Booking</a>
+                            <a class="breadcrumb-link" href="{{ route('bookings.index') }}">Jadwal Booking</a>
                         </li>
-                        @if(request('status'))
-                            <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">
-                                Filter: {{ ucfirst(request('status')) }}
-                            </li>
-                        @endif
-                        @if(request('search'))
-                            <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">
-                                Cari: "{{ request('search') }}"
-                            </li>
-                        @endif
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Status: {{ ucfirst(request('status')) }}
+                        </li>
+                    @elseif(request('search'))
+                        <li class="breadcrumb-item">
+                            <a class="breadcrumb-link" href="{{ route('bookings.index') }}">Jadwal Booking</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Cari: "{{ request('search') }}"
+                        </li>
                     @else
-                        <li class="breadcrumb-item active text-dark fw-medium" aria-current="page">Daftar Booking</li>
+                        <li class="breadcrumb-item active" aria-current="page">Jadwal Booking</li>
                     @endif
                 </ol>
             </nav>
@@ -104,7 +107,7 @@
     </div>
 
     <!-- 3. Pembungkus Kartu Tabel Utama (Ukuran Alami Presisi & Sejajar) -->
-    <div class="card border-0 shadow-sm rounded-4 p-4 w-100">
+    <div class="card border-0 shadow-sm rounded-4 p-4 w-100" id="daftar-booking">
         <!-- Header Tabel & Tombol Tambah Data (Memicu Modal Tambah) -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="d-flex align-items-center gap-2">

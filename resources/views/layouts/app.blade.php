@@ -20,6 +20,10 @@
             background-color: #f8f9fa;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Styling Navbar yang Selaras & Elegan */
         .navbar {
             padding-top: 0.65rem;
@@ -29,19 +33,38 @@
             font-size: 1.15rem;
             letter-spacing: -0.2px;
         }
-        .navbar-nav .nav-link {
+        .navbar-nav .nav-link,
+        .navbar-nav .nav-link:visited {
             font-size: 14.5px;
             font-weight: 500;
-            color: #4b5563;
+            color: #64748b !important;
             padding: 0.5rem 0.85rem;
             transition: color 0.15s ease-in-out;
+            text-decoration: none;
         }
         .navbar-nav .nav-link:hover {
-            color: #0d6efd;
+            color: #0d6efd !important;
         }
-        .navbar-nav .nav-link.active {
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link.active:visited {
             color: #0d6efd !important;
             font-weight: 600;
+        }
+
+        /* Styling Breadcrumb Elegan & Bebas Warna Ungu */
+        .breadcrumb-item a,
+        .breadcrumb-item a:visited {
+            color: #64748b !important;
+            text-decoration: none;
+            transition: color 0.15s ease-in-out;
+        }
+        .breadcrumb-item a:hover {
+            color: #0d6efd !important;
+            text-decoration: underline;
+        }
+        .breadcrumb-item.active {
+            color: #475569 !important;
+            font-weight: 500;
         }
         .dropdown-menu {
             font-size: 14px;
